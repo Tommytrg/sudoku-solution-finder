@@ -1,0 +1,21 @@
+{
+  "name": "sudoku-solution-finder",
+  "version": "1.0.0",
+  "description": "A sudoku solution finder",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "tommytrg",
+  "license": "ISC",
+  "dependencies": {
+    "sudoku-validate": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.0",
+    "eslint": "^4.3.0",
+    "eslint-config-airbnb-base": "^11.3.0",
+    "eslint-plugin-import": "^2.7.0",
+    "mocha": "^3.4.2"
+  }
+}
