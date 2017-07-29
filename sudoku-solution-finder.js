@@ -44,6 +44,18 @@ const transposeArray = (board) => {
   return board[0].map((col, i) => board.map(row => row[i]));
 };
 
+const isValidRow = (row, board) => {
+  const line = board[row];
+  for (let i = line.length - 1; i >= 0; i -= 1) {
+    if (line.indexOf(line[i]) !== i) {
+      return false;
+    }
+  }
+  return true;
+};
+
+const isValidCol = (col, board) => isValidRow(col, transposeArray(board));
+
 const getQuadrant = (board, firstCoordX, firstCoordY) => {
   const arr = [];
   for (let i = 0; i < 3; i += 1) {
@@ -62,26 +74,14 @@ const selectQuadrant = (row, col, board) => {
       if (i === row && j === col) return getQuadrant(board, i, j);
     }
   }
-  return arrayOfArrays;
 };
 
-
-const isValidRow = (row, board) => {
-  const line = board[row];
-  for (let i = line.length - 1; i >= 0; i -= 1) {
-    if (line.indexOf(line[i]) !== i) {
-      return false;
-    }
-  }
-  return true;
-};
 
 const isValidQuadrant = (row, col, board) => {
   const quadrant = selectQuadrant(row, col, board);
   return isValidRow(getPlainArray(quadrant));
 };
 
-const isValidCol = (col, board) => isValidRow(col, transposeArray(board));
 
 const isValidNumber = (row, col, board) => {
   return isValidRow(row, board) && isValidCol(col, board) && isValidQuadrant(row, col, board);
@@ -125,5 +125,7 @@ const initializeSudokuSolutionFinder = (sudoku) => {
 module.exports = {
   getBooleanBoard,
   getPlainArray,
+  isValidRow,
+  isValidCol,
   transposeArray,
 };

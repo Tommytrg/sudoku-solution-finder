@@ -154,3 +154,77 @@ describe('getBooleanBoard function', () => {
     expect(ssf.getBooleanBoard(sudokuToResolve1)).to.deep.equal(sudokuBoolean1);
   });
 });
+
+
+describe('isValidRow function', () => {  
+  it('isValidRow(0, sudokuToResolve1) should return false', () => {
+    expect(ssf.isValidRow(0, sudokuToResolve1)).to.be.false;
+  });
+  it('isValidRow(1, sudokuToResolve1 )should return false', () => {
+    expect(ssf.isValidRow(1, sudokuToResolve1)).to.be.false;
+  });
+
+  it('isValidRow(2, sudokuToResolve1) should return false', () => {
+    expect(ssf.isValidRow(2, sudokuToResolve1)).to.be.false;
+  });
+
+  it('isValidRow(3, sudokuToResolve1) should return false', () => {
+    expect(ssf.isValidRow(3, sudokuToResolve1)).to.be.false;
+  });
+
+  it('isValidRow(4, sudokuToResolve1) should return false', () => {
+    expect(ssf.isValidRow(4, sudokuToResolve1)).to.be.false;
+  });
+
+  it('isValidRow(5, sudokuToResolve1) should return false', () => {
+    expect(ssf.isValidRow(5, sudokuToResolve1)).to.be.false;
+  });
+
+  it('isValidRow(6, sudokuToResolve1) should return false', () => {
+    expect(ssf.isValidRow(6, sudokuToResolve1)).to.be.false;
+  });
+
+  it('isValidRow(7, sudokuToResolve1) should return false', () => {
+    expect(ssf.isValidRow(7, sudokuToResolve1)).to.be.false;
+  });
+
+  it('isValidRow(8, sudokuToResolve1) should return false', () => {
+    expect(ssf.isValidRow(8, sudokuToResolve1)).to.be.false;
+  });
+
+  it('isValidRow(0, sudokuSolved1) should return true', () => {
+    expect(ssf.isValidRow(0, sudokuSolved1)).to.be.true;
+  });
+
+  it('isValidRow(1, sudokuSolved1 )should return true', () => {
+    expect(ssf.isValidRow(1, sudokuSolved1)).to.be.true;
+  });
+
+  it('isValidRow(2, sudokuSolved1) should return true', () => {
+    expect(ssf.isValidRow(2, sudokuSolved1)).to.be.true;
+  });
+
+  it('isValidRow(3, sudokuSolved1) should return true', () => {
+    expect(ssf.isValidRow(3, sudokuSolved1)).to.be.true;
+  });
+
+  it('isValidRow(4, sudokuSolved1) should return true', () => {
+    expect(ssf.isValidRow(4, sudokuSolved1)).to.be.true;
+  });
+
+  it('isValidRow(5, sudokuSolved1) should return true', () => {
+    expect(ssf.isValidRow(5, sudokuSolved1)).to.be.true;
+  });
+
+  it('isValidRow(6, sudokuSolved1) should return true', () => {
+    expect(ssf.isValidRow(6, sudokuSolved1)).to.be.true;
+  });
+
+  it('isValidRow(7, sudokuSolved1) should return true', () => {
+    expect(ssf.isValidRow(7, sudokuSolved1)).to.be.true;
+  });
+
+  it('isValidRow(8, sudokuSolved1) should return true', () => {
+    expect(ssf.isValidRow(8, sudokuSolved1)).to.be.true;
+  });
+});
