@@ -61,9 +61,96 @@ const sudoku2 = [
   [8, 7, 5, 1, 3, 4, 9, 2, 6],
 ];
 
-describe('getPermanentValues function', () => {
-  it('should return true if matrix only has boolean values', () => {
-    const isBooleanMatrix = ssf.getPermanentValues(sudokuSolved1).filter(array => !array.filter(value => typeof value !== 'boolean')).length === 0;
-    expect(isBooleanMatrix).to.be.true;
+
+describe('getPlainArray function', () => {
+  const matrix = [
+    [1, 1, 1],
+    [1, 1, 1],
+    [1, 1, 1],
+  ];
+  it(
+    'getPlainArray([[1, 1, 1], [1, 1, 1], [1, 1, 1]]) should return [1, 1, 1, 1, 1, 1, 1, 1, 1]',
+    () => {
+      expect(ssf.getPlainArray(matrix)).to.deep.equal([1, 1, 1, 1, 1, 1, 1, 1, 1]);
+    });
+});
+
+
+describe('transposeArray function', () => {
+  it('transposeArray([1]) should return [1]', () => {
+    expect(ssf.transposeArray([1])).to.deep.equal([1]);
+  });
+  it('transposeArray([[1, 1], [1, 1]]) should return [[1, 1], [1, 1]]', () => {
+    expect(ssf.transposeArray([
+      [1, 1],
+      [1, 1],
+    ])).to.deep.equal([
+      [1, 1],
+      [1, 1],
+    ]);
+  });
+  it('transposeArray([[1, 2],[1, 2]]) should return [[1, 1],[2, 2]]', () => {
+    expect(ssf.transposeArray([
+      [1, 2],
+      [1, 2],
+    ])).to.deep.equal([
+      [1, 1],
+      [2, 2],
+    ]);
+  });
+  it(
+    'transposeArray([[1, 2, 3], [1, 2, 3], [1, 2, 3]]) should return [[1, 1, 1], [2, 2, 2],[3, 3, 3]]',
+    () => {
+      expect(ssf.transposeArray([
+        [1, 2, 3],
+        [1, 2, 3],
+        [1, 2, 3],
+      ])).to.deep.equal([
+        [1, 1, 1],
+        [2, 2, 2],
+        [3, 3, 3],
+      ]);
+    });
+  it(`transposeArray([
+    [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    [1, 2, 3, 4, 5, 6, 7, 8, 9]]
+    should return 
+    [1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [2, 2, 2, 2, 2, 2, 2, 2, 2],
+    [3, 3, 3, 3, 3, 3, 3, 3, 3],
+    [4, 4, 4, 4, 4, 4, 4, 4, 4],
+    [5, 5, 5, 5, 5, 5, 5, 5, 5],
+    [6, 6, 6, 6, 6, 6, 6, 6, 6],
+    [7, 7, 7, 7, 7, 7, 7, 7, 7],
+    [8, 8, 8, 8, 8, 8, 8, 8, 8],
+    [9, 9, 9, 9, 9, 9, 9, 9, 9]`,
+    () => {
+      const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      const matrix = [arr, arr, arr, arr, arr, arr, arr, arr, arr]; // arr x 9
+      const result = [
+        [1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [2, 2, 2, 2, 2, 2, 2, 2, 2],
+        [3, 3, 3, 3, 3, 3, 3, 3, 3],
+        [4, 4, 4, 4, 4, 4, 4, 4, 4],
+        [5, 5, 5, 5, 5, 5, 5, 5, 5],
+        [6, 6, 6, 6, 6, 6, 6, 6, 6],
+        [7, 7, 7, 7, 7, 7, 7, 7, 7],
+        [8, 8, 8, 8, 8, 8, 8, 8, 8],
+        [9, 9, 9, 9, 9, 9, 9, 9, 9],
+      ];
+      expect(ssf.transposeArray(matrix)).to.deep.equal(result);
+    });
+});
+
+describe('getBooleanBoard function', () => {
+  it('should getBooleanBoard(matrix) should return true', () => {
+    expect(ssf.getBooleanBoard(sudokuToResolve1)).to.deep.equal(sudokuBoolean1);
   });
 });
