@@ -25,6 +25,18 @@ const sudokuToResolve1 = [
   [8, 0, 0, 1, 0, 0, 9, 0, 0],
 ];
 
+const sudokuBoolean1 = [
+  [true, true, false, true, true, false, true, true, false],
+  [true, false, true, false, true, true, true, false, true],
+  [true, false, true, true, false, true, true, false, true],
+  [true, true, false, true, false, false, true, true, false],
+  [false, true, false, true, true, true, false, true, false],
+  [false, true, true, false, false, true, false, true, true],
+  [true, false, true, false, true, true, true, false, true],
+  [true, false, true, true, true, false, true, false, true],
+  [false, true, true, false, true, true, false, true, true],
+];
+
 const sudokuSolved1 = [
   [6, 8, 1, 7, 5, 9, 2, 3, 4],
   [7, 4, 3, 2, 1, 8, 6, 9, 5],
