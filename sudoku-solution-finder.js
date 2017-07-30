@@ -127,5 +127,6 @@ module.exports = {
   getPlainArray,
   isValidRow,
   isValidCol,
+  getQuadrant,
   transposeArray,
 };
