@@ -1,17 +1,6 @@
 const expect = require('chai').expect;
 const ssf = require('./sudoku-solution-finder.js');
-
-const sudokuEmpty = [
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-];
+const isValidSudoku = require('sudoku-validate');
 
 const sudokuToResolve1 = [
   [0, 0, 1, 0, 0, 9, 0, 0, 4],
@@ -49,17 +38,11 @@ const sudokuSolved1 = [
   [8, 7, 5, 1, 3, 4, 9, 2, 6],
 ];
 
-const sudoku2 = [
-  [0, 8, 1, 7, 5, 9, 2, 3, 0],
-  [7, 4, 3, 2, 1, 8, 6, 9, 5],
-  [5, 9, 2, 4, 6, 3, 7, 1, 8],
-  [2, 3, 4, 9, 7, 5, 8, 6, 1],
-  [1, 5, 7, 8, 2, 6, 3, 4, 9],
-  [9, 6, 8, 3, 4, 1, 5, 7, 2],
-  [3, 1, 6, 5, 9, 2, 4, 8, 7],
-  [4, 2, 9, 6, 8, 7, 1, 5, 3],
-  [8, 7, 5, 1, 3, 4, 9, 2, 6],
-];
+// describe('isValidSudoku function', () => {
+//   it('isValidSudoku(sudokuToResolve) shoudl return false', () => {
+//     expect(isValidSudoku(sudokuToResolve1)).to.be.false;
+//   });
+// });
 
 
 describe('getPlainArray function', () => {
@@ -156,148 +139,163 @@ describe('getBooleanBoard function', () => {
 
 
 describe('isValidRow function', () => {  
-  it('isValidRow(0, sudokuToResolve1) should return false', () => {
-    expect(ssf.isValidRow(0, sudokuToResolve1)).to.be.false;
+  it('isValidRow(0, sudokuToResolve1) should return true', () => {
+    expect(ssf.isValidRow(0, sudokuToResolve1)).to.be.true;
   });
-  it('isValidRow(1, sudokuToResolve1 )should return false', () => {
-    expect(ssf.isValidRow(1, sudokuToResolve1)).to.be.false;
-  });
-
-  it('isValidRow(2, sudokuToResolve1) should return false', () => {
-    expect(ssf.isValidRow(2, sudokuToResolve1)).to.be.false;
+  it('isValidRow(1, sudokuToResolve1 )should return true', () => {
+    expect(ssf.isValidRow(1, sudokuToResolve1)).to.be.true;
   });
 
-  it('isValidRow(3, sudokuToResolve1) should return false', () => {
-    expect(ssf.isValidRow(3, sudokuToResolve1)).to.be.false;
+  it('isValidRow(2, sudokuToResolve1) should return true', () => {
+    expect(ssf.isValidRow(2, sudokuToResolve1)).to.be.true;
   });
 
-  it('isValidRow(4, sudokuToResolve1) should return false', () => {
-    expect(ssf.isValidRow(4, sudokuToResolve1)).to.be.false;
+  it('isValidRow(3, sudokuToResolve1) should return true', () => {
+    expect(ssf.isValidRow(3, sudokuToResolve1)).to.be.true;
   });
 
-  it('isValidRow(5, sudokuToResolve1) should return false', () => {
-    expect(ssf.isValidRow(5, sudokuToResolve1)).to.be.false;
+  it('isValidRow(4, sudokuToResolve1) should return true', () => {
+    expect(ssf.isValidRow(4, sudokuToResolve1)).to.be.true;
   });
 
-  it('isValidRow(6, sudokuToResolve1) should return false', () => {
-    expect(ssf.isValidRow(6, sudokuToResolve1)).to.be.false;
+  it('isValidRow(5, sudokuToResolve1) should return true', () => {
+    expect(ssf.isValidRow(5, sudokuToResolve1)).to.be.true;
   });
 
-  it('isValidRow(7, sudokuToResolve1) should return false', () => {
-    expect(ssf.isValidRow(7, sudokuToResolve1)).to.be.false;
+  it('isValidRow(6, sudokuToResolve1) should return true', () => {
+    expect(ssf.isValidRow(6, sudokuToResolve1)).to.be.true;
   });
 
-  it('isValidRow(8, sudokuToResolve1) should return false', () => {
-    expect(ssf.isValidRow(8, sudokuToResolve1)).to.be.false;
+  it('isValidRow(7, sudokuToResolve1) should return true', () => {
+    expect(ssf.isValidRow(7, sudokuToResolve1)).to.be.true;
   });
 
-  it('isValidRow(0, sudokuSolved1) should return true', () => {
-    expect(ssf.isValidRow(0, sudokuSolved1)).to.be.true;
+  it('isValidRow(8, sudokuToResolve1) should return true', () => {
+    expect(ssf.isValidRow(8, sudokuToResolve1)).to.be.true;
   });
 
-  it('isValidRow(1, sudokuSolved1 )should return true', () => {
-    expect(ssf.isValidRow(1, sudokuSolved1)).to.be.true;
-  });
+  // it('isValidRow(0, sudokuSolved1) should return true', () => {
+  //   expect(ssf.isValidRow(0, sudokuSolved1)).to.be.true;
+  // });
 
-  it('isValidRow(2, sudokuSolved1) should return true', () => {
-    expect(ssf.isValidRow(2, sudokuSolved1)).to.be.true;
-  });
+  // it('isValidRow(1, sudokuSolved1 )should return true', () => {
+  //   expect(ssf.isValidRow(1, sudokuSolved1)).to.be.true;
+  // });
 
-  it('isValidRow(3, sudokuSolved1) should return true', () => {
-    expect(ssf.isValidRow(3, sudokuSolved1)).to.be.true;
-  });
+  // it('isValidRow(2, sudokuSolved1) should return true', () => {
+  //   expect(ssf.isValidRow(2, sudokuSolved1)).to.be.true;
+  // });
 
-  it('isValidRow(4, sudokuSolved1) should return true', () => {
-    expect(ssf.isValidRow(4, sudokuSolved1)).to.be.true;
-  });
+  // it('isValidRow(3, sudokuSolved1) should return true', () => {
+  //   expect(ssf.isValidRow(3, sudokuSolved1)).to.be.true;
+  // });
 
-  it('isValidRow(5, sudokuSolved1) should return true', () => {
-    expect(ssf.isValidRow(5, sudokuSolved1)).to.be.true;
-  });
+  // it('isValidRow(4, sudokuSolved1) should return true', () => {
+  //   expect(ssf.isValidRow(4, sudokuSolved1)).to.be.true;
+  // });
 
-  it('isValidRow(6, sudokuSolved1) should return true', () => {
-    expect(ssf.isValidRow(6, sudokuSolved1)).to.be.true;
-  });
+  // it('isValidRow(5, sudokuSolved1) should return true', () => {
+  //   expect(ssf.isValidRow(5, sudokuSolved1)).to.be.true;
+  // });
 
-  it('isValidRow(7, sudokuSolved1) should return true', () => {
-    expect(ssf.isValidRow(7, sudokuSolved1)).to.be.true;
-  });
+  // it('isValidRow(6, sudokuSolved1) should return true', () => {
+  //   expect(ssf.isValidRow(6, sudokuSolved1)).to.be.true;
+  // });
 
-  it('isValidRow(8, sudokuSolved1) should return true', () => {
-    expect(ssf.isValidRow(8, sudokuSolved1)).to.be.true;
-  });
+  // it('isValidRow(7, sudokuSolved1) should return true', () => {
+  //   expect(ssf.isValidRow(7, sudokuSolved1)).to.be.true;
+  // });
+
+  // it('isValidRow(8, sudokuSolved1) should return true', () => {
+  //   expect(ssf.isValidRow(8, sudokuSolved1)).to.be.true;
+  // });
 });
 
-describe('isValidCol function', () => {  
-  it('isValidCol(0, sudokuToResolve1) should return false', () => {
-    expect(ssf.isValidCol(0, sudokuToResolve1)).to.be.false;
+describe('isValidCol function', () => {
+  const sudokuError = [
+  [1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 4, 0, 2, 0, 0, 0, 9, 1],
+  [0, 1, 0, 0, 6, 0, 0, 1, 0],
+  [0, 0, 1, 0, 7, 5, 0, 0, 1],
+  [1, 0, 7, 1, 0, 0, 3, 0, 9],
+  [9, 0, 0, 3, 1, 0, 5, 0, 0],
+  [0, 1, 0, 9, 0, 1, 0, 8, 0],
+  [0, 2, 0, 0, 0, 7, 1, 5, 0],
+  [8, 0, 0, 1, 0, 0, 9, 1, 0],
+];
+  it('isValidCol(0, sudokuToResolve1) should return true', () => {
+    expect(ssf.isValidCol(0, sudokuToResolve1)).to.be.true;
   });
-  it('isValidCol(1, sudokuToResolve1 )should return false', () => {
-    expect(ssf.isValidCol(1, sudokuToResolve1)).to.be.false;
-  });
-
-  it('isValidCol(2, sudokuToResolve1) should return false', () => {
-    expect(ssf.isValidCol(2, sudokuToResolve1)).to.be.false;
-  });
-
-  it('isValidCol(3, sudokuToResolve1) should return false', () => {
-    expect(ssf.isValidCol(3, sudokuToResolve1)).to.be.false;
-  });
-
-  it('isValidCol(4, sudokuToResolve1) should return false', () => {
-    expect(ssf.isValidCol(4, sudokuToResolve1)).to.be.false;
-  });
-
-  it('isValidCol(5, sudokuToResolve1) should return false', () => {
-    expect(ssf.isValidCol(5, sudokuToResolve1)).to.be.false;
+  it('isValidCol(1, sudokuToResolve1 )should return true', () => {
+    expect(ssf.isValidCol(1, sudokuToResolve1)).to.be.true;
   });
 
-  it('isValidCol(6, sudokuToResolve1) should return false', () => {
-    expect(ssf.isValidCol(6, sudokuToResolve1)).to.be.false;
+  it('isValidCol(2, sudokuToResolve1) should return true', () => {
+    expect(ssf.isValidCol(2, sudokuToResolve1)).to.be.true;
   });
 
-  it('isValidCol(7, sudokuToResolve1) should return false', () => {
-    expect(ssf.isValidCol(7, sudokuToResolve1)).to.be.false;
+  it('isValidCol(3, sudokuToResolve1) should return true', () => {
+    expect(ssf.isValidCol(3, sudokuToResolve1)).to.be.true;
   });
 
-  it('isValidCol(8, sudokuToResolve1) should return false', () => {
-    expect(ssf.isValidCol(8, sudokuToResolve1)).to.be.false;
+  it('isValidCol(4, sudokuToResolve1) should return true', () => {
+    expect(ssf.isValidCol(4, sudokuToResolve1)).to.be.true;
   });
 
-  it('isValidCol(0, sudokuSolved1) should return true', () => {
-    expect(ssf.isValidCol(0, sudokuSolved1)).to.be.true;
+  it('isValidCol(5, sudokuToResolve1) should return true', () => {
+    expect(ssf.isValidCol(5, sudokuToResolve1)).to.be.true;
   });
 
-  it('isValidCol(1, sudokuSolved1 )should return true', () => {
-    expect(ssf.isValidCol(1, sudokuSolved1)).to.be.true;
+  it('isValidCol(6, sudokuToResolve1) should return true', () => {
+    expect(ssf.isValidCol(6, sudokuToResolve1)).to.be.true;
   });
 
-  it('isValidCol(2, sudokuSolved1) should return true', () => {
-    expect(ssf.isValidCol(2, sudokuSolved1)).to.be.true;
+  it('isValidCol(7, sudokuToResolve1) should return true', () => {
+    expect(ssf.isValidCol(7, sudokuToResolve1)).to.be.true;
   });
 
-  it('isValidCol(3, sudokuSolved1) should return true', () => {
-    expect(ssf.isValidCol(3, sudokuSolved1)).to.be.true;
+  it('isValidCol(8, sudokuToResolve1) should return true', () => {
+    expect(ssf.isValidCol(8, sudokuToResolve1)).to.be.true;
   });
 
-  it('isValidCol(4, sudokuSolved1) should return true', () => {
-    expect(ssf.isValidCol(4, sudokuSolved1)).to.be.true;
+
+
+
+
+  it('isValidCol(0, sudokuSolved1) should return false', () => {
+    expect(ssf.isValidCol(0, sudokuError)).to.be.false;
   });
 
-  it('isValidCol(5, sudokuSolved1) should return true', () => {
-    expect(ssf.isValidCol(5, sudokuSolved1)).to.be.true;
+  it('isValidCol(1, sudokuError )should return false', () => {
+    expect(ssf.isValidCol(1, sudokuError)).to.be.false;
   });
 
-  it('isValidCol(6, sudokuSolved1) should return true', () => {
-    expect(ssf.isValidCol(6, sudokuSolved1)).to.be.true;
+  it('isValidCol(2, sudokuError) should return false', () => {
+    expect(ssf.isValidCol(2, sudokuError)).to.be.false;
   });
 
-  it('isValidCol(7, sudokuSolved1) should return true', () => {
-    expect(ssf.isValidCol(7, sudokuSolved1)).to.be.true;
+  it('isValidCol(3, sudokuError) should return false', () => {
+    expect(ssf.isValidCol(3, sudokuError)).to.be.false;
   });
 
-  it('isValidCol(8, sudokuSolved1) should return true', () => {
-    expect(ssf.isValidCol(8, sudokuSolved1)).to.be.true;
+  it('isValidCol(4, sudokuError) should return false', () => {
+    expect(ssf.isValidCol(4, sudokuError)).to.be.false;
+  });
+
+  it('isValidCol(5, sudokuError) should return false', () => {
+    expect(ssf.isValidCol(5, sudokuError)).to.be.false;
+  });
+
+  it('isValidCol(6, sudokuError) should return false', () => {
+    expect(ssf.isValidCol(6, sudokuError)).to.be.false;
+  });
+
+  it('isValidCol(7, sudokuError) should return false', () => {
+    expect(ssf.isValidCol(7, sudokuError)).to.be.false;
+  });
+
+  it('isValidCol(8, sudokuError) should return false', () => {
+    expect(ssf.isValidCol(8, sudokuError)).to.be.false;
   });
 });
 
@@ -707,3 +705,165 @@ describe('getQuadrantNumber function', () => {
   });
 });
 
+describe('selectQuadrant function', () => {
+  const matrix = [
+    [1, 1, 1, 2, 2, 2, 3, 3, 3],
+    [1, 1, 1, 2, 2, 2, 3, 3, 3],
+    [1, 1, 1, 2, 2, 2, 3, 3, 3],
+    [4, 4, 4, 5, 5, 5, 6, 6, 6],
+    [4, 4, 4, 5, 5, 5, 6, 6, 6],
+    [4, 4, 4, 5, 5, 5, 6, 6, 6],
+    [7, 7, 7, 8, 8, 8, 9, 9, 9],
+    [7, 7, 7, 8, 8, 8, 9, 9, 9],
+    [7, 7, 7, 8, 8, 8, 9, 9, 9],
+  ];
+  it('selectQuadrant(1) should return [[1, 1, 1],[1, 1, 1],[1, 1, 1]]', () => {
+    expect(ssf.selectQuadrant(matrix, 1)).to.deep.equal([[1, 1, 1], [1, 1, 1], [1, 1, 1]]);
+  });
+  it('selectQuadrant(2) should return [[2, 2, 2],[2, 2, 2],[2, 2, 2]]', () => {
+    expect(ssf.selectQuadrant(matrix, 2)).to.deep.equal([[2, 2, 2], [2, 2, 2], [2, 2, 2]]);
+  });
+  it('selectQuadrant(3) should return [[3, 3, 3],[3, 3, 3],[3, 3, 3]]', () => {
+    expect(ssf.selectQuadrant(matrix, 3)).to.deep.equal([[3, 3, 3], [3, 3, 3], [3, 3, 3]]);
+  });
+  it('selectQuadrant(4) should return [[4, 4, 4],[4, 4, 4],[4, 4, 4]]', () => {
+    expect(ssf.selectQuadrant(matrix, 4)).to.deep.equal([[4, 4, 4], [4, 4, 4], [4, 4, 4]]);
+  });
+
+  it('selectQuadrant(5) should return [[5, 5, 5],[5, 5, 5],[5, 5, 5]]', () => {
+    expect(ssf.selectQuadrant(matrix, 5)).to.deep.equal([[5, 5, 5], [5, 5, 5], [5, 5, 5]]);
+  });
+
+  it('selectQuadrant(6) should return [[6, 6, 6],[6, 6, 6],[6, 6, 6]]', () => {
+    expect(ssf.selectQuadrant(matrix, 6)).to.deep.equal([[6, 6, 6], [6, 6, 6], [6, 6, 6]]);
+  });
+
+  it('selectQuadrant(7) should return [[7, 7, 7],[7, 7, 7],[7, 7, 7]]', () => {
+    expect(ssf.selectQuadrant(matrix, 7)).to.deep.equal([[7, 7, 7], [7, 7, 7], [7, 7, 7]]);
+  });
+
+  it('selectQuadrant(8) should return [[8, 8, 8],[8, 8, 8],[8, 8, 8]]', () => {
+    expect(ssf.selectQuadrant(matrix, 8)).to.deep.equal([[8, 8, 8], [8, 8, 8], [8, 8, 8]]);
+  });
+
+  it('selectQuadrant(9) should return [[9, 9, 9],[9, 9, 9],[9, 9, 9]]', () => {
+    expect(ssf.selectQuadrant(matrix, 9)).to.deep.equal([[9, 9, 9], [9, 9, 9], [9, 9, 9]]);
+  });
+});
+
+describe('isValidQuadrant function', () => {
+  const sudokuTrue = [
+    [6, 8, 1, 7, 5, 9, 2, 3, 4],
+    [7, 4, 3, 2, 1, 8, 6, 9, 5],
+    [5, 9, 2, 4, 6, 3, 7, 1, 8],
+    [2, 3, 4, 9, 7, 5, 8, 6, 1],
+    [1, 5, 7, 8, 2, 6, 3, 4, 9],
+    [9, 6, 8, 3, 4, 1, 5, 7, 2],
+    [3, 1, 6, 5, 9, 2, 4, 8, 7],
+    [4, 2, 9, 6, 8, 7, 1, 5, 3],
+    [8, 7, 5, 1, 3, 4, 9, 2, 6],
+  ];
+  const sudokuFalse = [
+    [8, 8, 1, 7, 5, 9, 2, 3, 4],
+    [7, 4, 3, 2, 3, 8, 6, 9, 5],
+    [5, 9, 2, 4, 6, 3, 7, 1, 8],
+    [2, 3, 4, 9, 7, 5, 8, 6, 1],
+    [1, 5, 7, 8, 2, 6, 3, 4, 9],
+    [9, 6, 8, 3, 4, 1, 5, 7, 2],
+    [3, 1, 6, 5, 9, 2, 5, 8, 7],
+    [4, 2, 9, 6, 8, 7, 1, 5, 3],
+    [8, 7, 5, 1, 3, 4, 9, 2, 6],
+  ];
+  it('isValidQuadrant(sudokuTrue) should return true', () => {
+    expect(ssf.isValidQuadrant(0, 0, sudokuTrue)).to.be.true;
+  });
+
+  it('isValidQuadrant(sudokuTrue) should return true', () => {
+    expect(ssf.isValidQuadrant(3, 3, sudokuTrue)).to.be.true;
+  });
+
+  it('isValidQuadrant(sudokuTrue) should return true', () => {
+    expect(ssf.isValidQuadrant(6, 7, sudokuTrue)).to.be.true;
+  });
+
+  it('isValidQuadrant(sudokuFalse) should return false', () => {
+    expect(ssf.isValidQuadrant(0, 0, sudokuFalse)).to.be.false;
+  });
+
+  it('isValidQuadrant(sudokuFalse) should return false', () => {
+    expect(ssf.isValidQuadrant(2, 5, sudokuFalse)).to.be.false;
+  });
+
+  it('isValidQuadrant(sudokuFalse) should return false', () => {
+    expect(ssf.isValidQuadrant(6, 6, sudokuFalse)).to.be.false;
+  });
+});
+
+describe('isValidNumber function', () => {
+  const sudokuToResolve2 = [
+    [0, 0, 1, 0, 0, 9, 0, 0, 4],
+    [0, 4, 0, 2, 0, 0, 0, 9, 0],
+    [0, 9, 0, 0, 6, 0, 0, 1, 0],
+    [0, 0, 4, 0, 7, 5, 0, 0, 1],
+    [1, 0, 7, 0, 0, 0, 3, 0, 9],
+    [9, 0, 0, 3, 4, 0, 5, 0, 0],
+    [0, 1, 0, 9, 0, 0, 0, 8, 0],
+    [0, 2, 0, 0, 0, 7, 0, 5, 0],
+    [8, 0, 0, 1, 0, 0, 9, 0, 0],
+  ];
+  const sudokuToResolveError = [
+    [1, 0, 1, 0, 0, 9, 0, 0, 4],
+    [0, 4, 0, 2, 0, 0, 0, 9, 0],
+    [0, 9, 0, 0, 6, 0, 0, 1, 0],
+    [0, 0, 4, 0, 7, 5, 0, 0, 1],
+    [1, 0, 7, 0, 0, 0, 3, 0, 9],
+    [9, 0, 0, 3, 4, 0, 5, 0, 0],
+    [0, 1, 0, 9, 0, 0, 0, 8, 0],
+    [0, 2, 0, 0, 0, 7, 0, 5, 0],
+    [2, 0, 0, 1, 0, 0, 9, 0, 4],
+  ];
+  it('isValidNumber(0, 0) should return true', () => {
+    expect(ssf.isValidNumber(0, 0, sudokuToResolve2)).to.be.true;
+  });
+  it('isValidNumber(1, 1) should return true', () => {
+    expect(ssf.isValidNumber(2, 2, sudokuToResolve2)).to.be.true;
+  });
+  it('isValidNumber(2, 2) should return true', () => {
+    expect(ssf.isValidNumber(3, 3, sudokuToResolve2)).to.be.true;
+  });
+  it('isValidNumber(3, 3) should return true', () => {
+    expect(ssf.isValidNumber(4, 4, sudokuToResolve2)).to.be.true;
+  });
+  it('isValidNumber(4, 4) should return true', () => {
+    expect(ssf.isValidNumber(5, 5, sudokuToResolve2)).to.be.true;
+  });
+  it('isValidNumber(5, 5) should return true', () => {
+    expect(ssf.isValidNumber(6, 6, sudokuToResolve2)).to.be.true;
+  });
+  it('isValidNumber(6, 6) should return true', () => {
+    expect(ssf.isValidNumber(6, 6, sudokuToResolve2)).to.be.true;
+  });
+  it('isValidNumber(7, 7) should return true', () => {
+    expect(ssf.isValidNumber(7, 7, sudokuToResolve2)).to.be.true;
+  });
+  it('isValidNumber(8, 8) should return true', () => {
+    expect(ssf.isValidNumber(8, 8, sudokuToResolve2)).to.be.true;
+  });
+
+  it('isValidNumber(0, 0) should return true', () => {
+    expect(ssf.isValidNumber(0, 0, sudokuToResolveError)).to.be.false;
+  });
+  it('isValidNumber(0, 0) should return true', () => {
+    expect(ssf.isValidNumber(8, 8, sudokuToResolveError)).to.be.false;
+  });
+
+  it('isValidNumber(0, 0) should return true', () => {
+    expect(ssf.isValidNumber(8, 0, sudokuToResolveError)).to.be.false;
+  });
+});
+
+// describe('initializeSudokuSolutionFinder Function', () => {
+//   it('initializeSudokuSolutionFinder(sudokuToResolve) should return a solution', () => {
+//     expect(ssf.initializeSudokuSolutionFinder(sudokuToResolve1)).to.deep.equal(sudokuSolved1);
+//   });
+});

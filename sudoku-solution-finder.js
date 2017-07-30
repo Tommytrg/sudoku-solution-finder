@@ -1,6 +1,6 @@
 const isValidSudoku = require('sudoku-validate');
 
-const sudokuToResolve1 = [
+let sudokuToResolve1 = [
   [0, 0, 1, 0, 0, 9, 0, 0, 4],
   [0, 4, 0, 2, 0, 0, 0, 9, 0],
   [0, 9, 0, 0, 6, 0, 0, 1, 0],
@@ -12,17 +12,6 @@ const sudokuToResolve1 = [
   [8, 0, 0, 1, 0, 0, 9, 0, 0],
 ];
 
-const matrix1 = [
-  [1, 1, 1, 2, 2, 2, 3, 3, 3],
-  [1, 1, 1, 2, 2, 2, 3, 3, 3],
-  [1, 1, 1, 2, 2, 2, 3, 3, 3],
-  [4, 4, 4, 5, 5, 5, 6, 6, 6],
-  [4, 4, 4, 5, 5, 5, 6, 6, 6],
-  [4, 4, 4, 5, 5, 5, 6, 6, 6],
-  [7, 7, 7, 8, 8, 8, 9, 9, 9],
-  [7, 7, 7, 8, 8, 8, 9, 9, 9],
-  [7, 7, 7, 8, 8, 8, 9, 9, 9],
-];
 function getQuadrantNumber(row, col) {
   if (row < 3 && col < 3) return 1;
   if (row < 3 && col >= 3 && col < 6) return 2;
@@ -49,7 +38,7 @@ const transposeArray = (board) => {
 const isValidRow = (row, board) => {
   const line = board[row];
   for (let i = line.length - 1; i >= 0; i -= 1) {
-    if (line.indexOf(line[i]) !== i) {
+    if (line[i] !== 0 && line.indexOf(line[i]) !== i) {
       return false;
     }
   }
@@ -70,9 +59,7 @@ const getQuadrant = (board, firstCoordX, firstCoordY) => {
   return arr;
 };
 
-const selectQuadrant = (board, row, col) => {
-  const quadrantNumber = getQuadrantNumber(row, col);
-
+const selectQuadrant = (board, quadrantNumber) => {
   switch (quadrantNumber) {
     case 1:
       return getQuadrant(board, 0, 0);
@@ -95,10 +82,10 @@ const selectQuadrant = (board, row, col) => {
   }
 };
 
-
 const isValidQuadrant = (row, col, board) => {
-  const quadrant = selectQuadrant(board, row, col);
-  return isValidRow(getPlainArray(quadrant));
+  const quadrantNumber = getQuadrantNumber(row, col);
+  const quadrant = selectQuadrant(board, quadrantNumber);
+  return isValidRow(0, [getPlainArray(quadrant)]);
 };
 
 
@@ -106,26 +93,24 @@ const isValidNumber = (row, col, board) => {
   return isValidRow(row, board) && isValidCol(col, board) && isValidQuadrant(row, col, board);
 };
 
-
 const sudokuBacktracking = (row, col, board, booleanBoard, solutions) => {
-  if (row === 9) {
+  if(typeof row === 'object') return row;
+
+  if (col === 8) {
     return solutions;
   }
-  for (let i = 0; i < 9; i += 1) {
+  for (let i = 1; i < 10; i += 1) {
     if (booleanBoard[row][col]) {
       if (isValidNumber(row, col, board)) {
         board[row][col] = i;
       }
     }
-    if (row === 8 && col === 8 && isValidSudoku(board)) {
+    if (isValidSudoku(board)) {
       solutions.push(board);
     }
-
     if (row === 8) {
-      col += 1;
-      row = 0;
-    }
-    sudokuBacktracking(row + 1, col, board, booleanBoard, solutions);
+      sudokuBacktracking(0, col + 1, board, booleanBoard, solutions);
+    } else sudokuBacktracking(row + 1, col, board, booleanBoard, solutions);
   }
 };
 
@@ -133,20 +118,22 @@ const initializeSudokuSolutionFinder = (sudoku) => {
   let row = 0;
   let col = 0;
   const booleanBoard = getBooleanBoard(sudoku);
-  let board = [];
   let solutions = [];
-  const allSolutions = sudokuBacktracking(row, col, board, booleanBoard, solutions);
+  let allSolutions = sudokuBacktracking(row, col, sudoku, booleanBoard, solutions);
   return allSolutions;
 };
 
-// console.log(x);
-
+// const x = initializeSudokuSolutionFinder(sudokuToResolve1);
 module.exports = {
   getBooleanBoard,
   getPlainArray,
   getQuadrant,
   getQuadrantNumber,
+  initializeSudokuSolutionFinder,
   isValidCol,
+  isValidNumber,
+  isValidQuadrant,
   isValidRow,
+  selectQuadrant,
   transposeArray,
 };
