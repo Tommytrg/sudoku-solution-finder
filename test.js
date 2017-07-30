@@ -389,3 +389,321 @@ describe('getQuadrant function', () => {
     expect(ssf.getQuadrant(matrix, 6, 6)).to.deep.equal(solution9);
   });
 });
+
+describe('getQuadrantNumber function', () => {
+  it('getQuadrantNumber(0, 0) should return 1', () => {
+    expect(ssf.getQuadrantNumber(0, 0)).to.equal(1);
+  });
+
+  it('getQuadrantNumber(0, 1) should return 1', () => {
+    expect(ssf.getQuadrantNumber(0, 1)).to.equal(1);
+  });
+
+  it('getQuadrantNumber(0, 2) should return 1', () => {
+    expect(ssf.getQuadrantNumber(0, 2)).to.equal(1);
+  });
+
+  it('getQuadrantNumber(0, 3) should return 2', () => {
+    expect(ssf.getQuadrantNumber(0, 3)).to.equal(2);
+  });
+
+  it('getQuadrantNumber(0, 4) should return 2', () => {
+    expect(ssf.getQuadrantNumber(0, 4)).to.equal(2);
+  });
+
+  it('getQuadrantNumber(0, 5) should return 2', () => {
+    expect(ssf.getQuadrantNumber(0, 5)).to.equal(2);
+  });
+
+  it('getQuadrantNumber(0, 6) should return 3', () => {
+    expect(ssf.getQuadrantNumber(0, 6)).to.equal(3);
+  });
+  it('getQuadrantNumber(0, 7) should return 3', () => {
+    expect(ssf.getQuadrantNumber(0, 7)).to.equal(3);
+  });
+
+  it('getQuadrantNumber(0, 8) should return 3', () => {
+    expect(ssf.getQuadrantNumber(0, 8)).to.equal(3);
+  });
+
+  it('getQuadrantNumber(1, 0) should return 1', () => {
+    expect(ssf.getQuadrantNumber(0, 0)).to.equal(1);
+  });
+
+  it('getQuadrantNumber(1, 1) should return 1', () => {
+    expect(ssf.getQuadrantNumber(1, 1)).to.equal(1);
+  });
+
+  it('getQuadrantNumber(1, 2) should return 1', () => {
+    expect(ssf.getQuadrantNumber(1, 2)).to.equal(1);
+  });
+
+  it('getQuadrantNumber(1, 3) should return 2', () => {
+    expect(ssf.getQuadrantNumber(1, 3)).to.equal(2);
+  });
+
+  it('getQuadrantNumber(1, 4) should return 2', () => {
+    expect(ssf.getQuadrantNumber(1, 4)).to.equal(2);
+  });
+
+  it('getQuadrantNumber(1, 5) should return 2', () => {
+    expect(ssf.getQuadrantNumber(1, 5)).to.equal(2);
+  });
+
+  it('getQuadrantNumber(1, 6) should return 3', () => {
+    expect(ssf.getQuadrantNumber(1, 6)).to.equal(3);
+  });
+  it('getQuadrantNumber(1, 7) should return 3', () => {
+    expect(ssf.getQuadrantNumber(1, 7)).to.equal(3);
+  });
+
+  it('getQuadrantNumber(1, 8) should return 3', () => {
+    expect(ssf.getQuadrantNumber(1, 8)).to.equal(3);
+  });
+
+  it('getQuadrantNumber(2, 0) should return 1', () => {
+    expect(ssf.getQuadrantNumber(2, 0)).to.equal(1);
+  });
+
+  it('getQuadrantNumber(2, 1) should return 1', () => {
+    expect(ssf.getQuadrantNumber(2, 1)).to.equal(1);
+  });
+
+  it('getQuadrantNumber(2, 2) should return 1', () => {
+    expect(ssf.getQuadrantNumber(2, 2)).to.equal(1);
+  });
+
+  it('getQuadrantNumber(2, 3) should return 2', () => {
+    expect(ssf.getQuadrantNumber(2, 3)).to.equal(2);
+  });
+
+  it('getQuadrantNumber(2, 4) should return 2', () => {
+    expect(ssf.getQuadrantNumber(2, 4)).to.equal(2);
+  });
+
+  it('getQuadrantNumber(2, 5) should return 2', () => {
+    expect(ssf.getQuadrantNumber(2, 5)).to.equal(2);
+  });
+
+  it('getQuadrantNumber(2, 6) should return 3', () => {
+    expect(ssf.getQuadrantNumber(2, 6)).to.equal(3);
+  });
+  it('getQuadrantNumber(2, 7) should return 3', () => {
+    expect(ssf.getQuadrantNumber(2, 7)).to.equal(3);
+  });
+
+  it('getQuadrantNumber(2, 8) should return 3', () => {
+    expect(ssf.getQuadrantNumber(2, 8)).to.equal(3);
+  });
+
+  it('getQuadrantNumber(3, 0) should return 4', () => {
+    expect(ssf.getQuadrantNumber(3, 0)).to.equal(4);
+  });
+
+  it('getQuadrantNumber(3, 1) should return 4', () => {
+    expect(ssf.getQuadrantNumber(3, 1)).to.equal(4);
+  });
+
+  it('getQuadrantNumber(3, 2) should return 4', () => {
+    expect(ssf.getQuadrantNumber(3, 2)).to.equal(4);
+  });
+
+  it('getQuadrantNumber(3, 3) should return 5', () => {
+    expect(ssf.getQuadrantNumber(3, 3)).to.equal(5);
+  });
+
+  it('getQuadrantNumber(3, 4) should return 6', () => {
+    expect(ssf.getQuadrantNumber(3, 4)).to.equal(5);
+  });
+
+  it('getQuadrantNumber(3, 5) should return 6', () => {
+    expect(ssf.getQuadrantNumber(3, 5)).to.equal(5);
+  });
+
+  it('getQuadrantNumber(3, 6) should return 7', () => {
+    expect(ssf.getQuadrantNumber(3, 6)).to.equal(6);
+  });
+  it('getQuadrantNumber(3, 7) should return 7', () => {
+    expect(ssf.getQuadrantNumber(3, 7)).to.equal(6);
+  });
+
+  it('getQuadrantNumber(3, 8) should return 7', () => {
+    expect(ssf.getQuadrantNumber(3, 8)).to.equal(6);
+  });
+
+  it('getQuadrantNumber(4, 0) should return 4', () => {
+    expect(ssf.getQuadrantNumber(4, 0)).to.equal(4);
+  });
+
+  it('getQuadrantNumber(4, 1) should return 4', () => {
+    expect(ssf.getQuadrantNumber(4, 1)).to.equal(4);
+  });
+
+  it('getQuadrantNumber(4, 2) should return 4', () => {
+    expect(ssf.getQuadrantNumber(4, 2)).to.equal(4);
+  });
+
+  it('getQuadrantNumber(4, 3) should return 5', () => {
+    expect(ssf.getQuadrantNumber(4, 3)).to.equal(5);
+  });
+
+  it('getQuadrantNumber(4, 4) should return 6', () => {
+    expect(ssf.getQuadrantNumber(4, 4)).to.equal(5);
+  });
+
+  it('getQuadrantNumber(4, 5) should return 6', () => {
+    expect(ssf.getQuadrantNumber(4, 5)).to.equal(5);
+  });
+
+  it('getQuadrantNumber(4, 6) should return 7', () => {
+    expect(ssf.getQuadrantNumber(4, 6)).to.equal(6);
+  });
+  it('getQuadrantNumber(4, 7) should return 7', () => {
+    expect(ssf.getQuadrantNumber(4, 7)).to.equal(6);
+  });
+
+  it('getQuadrantNumber(4, 8) should return 7', () => {
+    expect(ssf.getQuadrantNumber(4, 8)).to.equal(6);
+  });
+
+  it('getQuadrantNumber(5, 0) should return 4', () => {
+    expect(ssf.getQuadrantNumber(5, 0)).to.equal(4);
+  });
+
+  it('getQuadrantNumber(5, 1) should return 4', () => {
+    expect(ssf.getQuadrantNumber(5, 1)).to.equal(4);
+  });
+
+  it('getQuadrantNumber(5, 2) should return 4', () => {
+    expect(ssf.getQuadrantNumber(5, 2)).to.equal(4);
+  });
+
+  it('getQuadrantNumber(5, 3) should return 5', () => {
+    expect(ssf.getQuadrantNumber(5, 3)).to.equal(5);
+  });
+
+  it('getQuadrantNumber(5, 4) should return 6', () => {
+    expect(ssf.getQuadrantNumber(5, 4)).to.equal(5);
+  });
+
+  it('getQuadrantNumber(5, 5) should return 6', () => {
+    expect(ssf.getQuadrantNumber(5, 5)).to.equal(5);
+  });
+
+  it('getQuadrantNumber(5, 6) should return 7', () => {
+    expect(ssf.getQuadrantNumber(5, 6)).to.equal(6);
+  });
+  it('getQuadrantNumber(5, 7) should return 7', () => {
+    expect(ssf.getQuadrantNumber(5, 7)).to.equal(6);
+  });
+
+  it('getQuadrantNumber(5, 8) should return 7', () => {
+    expect(ssf.getQuadrantNumber(5, 8)).to.equal(6);
+  });
+
+  it('getQuadrantNumber(6, 0) should return 7', () => {
+    expect(ssf.getQuadrantNumber(6, 0)).to.equal(7);
+  });
+
+  it('getQuadrantNumber(6, 1) should return 7', () => {
+    expect(ssf.getQuadrantNumber(6, 1)).to.equal(7);
+  });
+
+  it('getQuadrantNumber(6, 2) should return 7', () => {
+    expect(ssf.getQuadrantNumber(6, 2)).to.equal(7);
+  });
+
+  it('getQuadrantNumber(6, 3) should return 8', () => {
+    expect(ssf.getQuadrantNumber(6, 3)).to.equal(8);
+  });
+
+  it('getQuadrantNumber(6, 4) should return 8', () => {
+    expect(ssf.getQuadrantNumber(6, 4)).to.equal(8);
+  });
+
+  it('getQuadrantNumber(6, 5) should return 8', () => {
+    expect(ssf.getQuadrantNumber(6, 5)).to.equal(8);
+  });
+
+  it('getQuadrantNumber(6, 6) should return 9', () => {
+    expect(ssf.getQuadrantNumber(6, 6)).to.equal(9);
+  });
+  it('getQuadrantNumber(6, 7) should return 9', () => {
+    expect(ssf.getQuadrantNumber(6, 7)).to.equal(9);
+  });
+
+  it('getQuadrantNumber(6, 8) should return 9', () => {
+    expect(ssf.getQuadrantNumber(6, 8)).to.equal(9);
+  });
+
+  it('getQuadrantNumber(7, 0) should return 7', () => {
+    expect(ssf.getQuadrantNumber(7, 0)).to.equal(7);
+  });
+
+  it('getQuadrantNumber(7, 1) should return 7', () => {
+    expect(ssf.getQuadrantNumber(7, 1)).to.equal(7);
+  });
+
+  it('getQuadrantNumber(7, 2) should return 7', () => {
+    expect(ssf.getQuadrantNumber(7, 2)).to.equal(7);
+  });
+
+  it('getQuadrantNumber(7, 3) should return 8', () => {
+    expect(ssf.getQuadrantNumber(7, 3)).to.equal(8);
+  });
+
+  it('getQuadrantNumber(7, 4) should return 8', () => {
+    expect(ssf.getQuadrantNumber(7, 4)).to.equal(8);
+  });
+
+  it('getQuadrantNumber(7, 5) should return 8', () => {
+    expect(ssf.getQuadrantNumber(7, 5)).to.equal(8);
+  });
+
+  it('getQuadrantNumber(7, 6) should return 9', () => {
+    expect(ssf.getQuadrantNumber(7, 6)).to.equal(9);
+  });
+  it('getQuadrantNumber(7, 7) should return 9', () => {
+    expect(ssf.getQuadrantNumber(7, 7)).to.equal(9);
+  });
+
+  it('getQuadrantNumber(7, 8) should return 9', () => {
+    expect(ssf.getQuadrantNumber(7, 8)).to.equal(9);
+  });
+
+  it('getQuadrantNumber(8, 0) should return 7', () => {
+    expect(ssf.getQuadrantNumber(8, 0)).to.equal(7);
+  });
+
+  it('getQuadrantNumber(8, 1) should return 7', () => {
+    expect(ssf.getQuadrantNumber(8, 1)).to.equal(7);
+  });
+
+  it('getQuadrantNumber(8, 2) should return 7', () => {
+    expect(ssf.getQuadrantNumber(8, 2)).to.equal(7);
+  });
+
+  it('getQuadrantNumber(8, 3) should return 8', () => {
+    expect(ssf.getQuadrantNumber(8, 3)).to.equal(8);
+  });
+
+  it('getQuadrantNumber(8, 4) should return 8', () => {
+    expect(ssf.getQuadrantNumber(8, 4)).to.equal(8);
+  });
+
+  it('getQuadrantNumber(8, 5) should return 8', () => {
+    expect(ssf.getQuadrantNumber(8, 5)).to.equal(8);
+  });
+
+  it('getQuadrantNumber(8, 6) should return 9', () => {
+    expect(ssf.getQuadrantNumber(8, 6)).to.equal(9);
+  });
+  it('getQuadrantNumber(8, 7) should return 9', () => {
+    expect(ssf.getQuadrantNumber(8, 7)).to.equal(9);
+  });
+
+  it('getQuadrantNumber(8, 8) should return 9', () => {
+    expect(ssf.getQuadrantNumber(8, 8)).to.equal(9);
+  });
+});
+

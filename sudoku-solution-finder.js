@@ -11,29 +11,31 @@ const sudokuToResolve1 = [
   [0, 2, 0, 0, 0, 7, 0, 5, 0],
   [8, 0, 0, 1, 0, 0, 9, 0, 0],
 ];
-// function getQuadrantNumber(row, col) {
-//   let x;
-//   let y;
 
-// }
-//   if (col < 3) x = 0;
-//   else if (col > 6) x = 2;
-//   else x = 1;
+const matrix1 = [
+  [1, 1, 1, 2, 2, 2, 3, 3, 3],
+  [1, 1, 1, 2, 2, 2, 3, 3, 3],
+  [1, 1, 1, 2, 2, 2, 3, 3, 3],
+  [4, 4, 4, 5, 5, 5, 6, 6, 6],
+  [4, 4, 4, 5, 5, 5, 6, 6, 6],
+  [4, 4, 4, 5, 5, 5, 6, 6, 6],
+  [7, 7, 7, 8, 8, 8, 9, 9, 9],
+  [7, 7, 7, 8, 8, 8, 9, 9, 9],
+  [7, 7, 7, 8, 8, 8, 9, 9, 9],
+];
+function getQuadrantNumber(row, col) {
+  if (row < 3 && col < 3) return 1;
+  if (row < 3 && col >= 3 && col < 6) return 2;
+  if (row < 3 && col >= 6) return 3;
 
-//   if (row < 3) y = 0;
-//   else if (row > 6) y = 2;
-//   else y = 1;
+  if (row >= 3 && row < 6 && col < 3) return 4;
+  if (row >= 3 && row < 6 && col >= 3 && col < 6) return 5;
+  if (row >= 3 && row < 6 && col >= 6) return 6;
 
-//   switch (x) {
-//     case 0:
-//       return y;
-//     case 1:
-//       return 3 + y;
-//     case 2:
-//       return 6 + y;
-//     default:
-//       return 'Error';
-//   }
+  if (row >= 6 && col < 3) return 7;
+  if (row >= 6 && col >= 3 && col < 6) return 8;
+  if (row >= 6 && col >= 6) return 9;
+}
 
 const getPlainArray = matrix => [].concat(...matrix[0]).concat(...matrix[1]).concat(...matrix[2]);
 
@@ -68,17 +70,34 @@ const getQuadrant = (board, firstCoordX, firstCoordY) => {
   return arr;
 };
 
-const selectQuadrant = (row, col, board) => {
-  for (let i = 0; i <= 6; i += 3) {
-    for (let j = 0; j <= 6; j += 3) {
-      if (i === row && j === col) return getQuadrant(board, i, j);
-    }
+const selectQuadrant = (board, row, col) => {
+  const quadrantNumber = getQuadrantNumber(row, col);
+
+  switch (quadrantNumber) {
+    case 1:
+      return getQuadrant(board, 0, 0);
+    case 2:
+      return getQuadrant(board, 3, 0);
+    case 3:
+      return getQuadrant(board, 6, 0);
+    case 4:
+      return getQuadrant(board, 0, 3);
+    case 5:
+      return getQuadrant(board, 3, 3);
+    case 6:
+      return getQuadrant(board, 6, 3);
+    case 7:
+      return getQuadrant(board, 0, 6);
+    case 8:
+      return getQuadrant(board, 3, 6);
+    case 9:
+      return getQuadrant(board, 6, 6);
   }
 };
 
 
 const isValidQuadrant = (row, col, board) => {
-  const quadrant = selectQuadrant(row, col, board);
+  const quadrant = selectQuadrant(board, row, col);
   return isValidRow(getPlainArray(quadrant));
 };
 
@@ -125,8 +144,9 @@ const initializeSudokuSolutionFinder = (sudoku) => {
 module.exports = {
   getBooleanBoard,
   getPlainArray,
-  isValidRow,
-  isValidCol,
   getQuadrant,
+  getQuadrantNumber,
+  isValidCol,
+  isValidRow,
   transposeArray,
 };
