@@ -862,8 +862,8 @@ describe('isValidNumber function', () => {
   });
 });
 
-// describe('initializeSudokuSolutionFinder Function', () => {
-//   it('initializeSudokuSolutionFinder(sudokuToResolve) should return a solution', () => {
-//     expect(ssf.initializeSudokuSolutionFinder(sudokuToResolve1)).to.deep.equal(sudokuSolved1);
-//   });
+describe('initializeSudokuSolutionFinder Function', () => {
+  it('initializeSudokuSolutionFinder(sudokuToResolve) should return a solution', () => {
+    expect(ssf.initializeSudokuSolutionFinder(sudokuToResolve1)).to.deep.equal(sudokuSolved1);
+  });
 });

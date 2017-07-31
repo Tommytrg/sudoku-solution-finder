@@ -11,6 +11,28 @@ let sudokuToResolve1 = [
   [0, 2, 0, 0, 0, 7, 0, 5, 0],
   [8, 0, 0, 1, 0, 0, 9, 0, 0],
 ];
+let sudokuEmpty = [
+  [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0],
+];
+const sudokuSolved1 = [
+  [6, 8, 1, 7, 5, 9, 2, 3, 4],
+  [7, 4, 3, 2, 1, 8, 6, 9, 5],
+  [5, 9, 2, 4, 6, 3, 7, 1, 8],
+  [2, 3, 4, 9, 7, 5, 8, 6, 1],
+  [1, 5, 7, 8, 2, 6, 3, 4, 9],
+  [9, 6, 8, 3, 4, 1, 5, 7, 2],
+  [3, 1, 6, 5, 9, 2, 4, 8, 7],
+  [4, 2, 9, 6, 8, 7, 1, 5, 3],
+  [8, 7, 5, 1, 3, 4, 9, 2, 0],
+];
 
 function getQuadrantNumber(row, col) {
   if (row < 3 && col < 3) return 1;
@@ -92,38 +114,60 @@ const isValidQuadrant = (row, col, board) => {
 const isValidNumber = (row, col, board) => {
   return isValidRow(row, board) && isValidCol(col, board) && isValidQuadrant(row, col, board);
 };
-
-const sudokuBacktracking = (row, col, board, booleanBoard, solutions) => {
-  if(typeof row === 'object') return row;
-
-  if (col === 8) {
-    return solutions;
-  }
-  for (let i = 1; i < 10; i += 1) {
-    if (booleanBoard[row][col]) {
+//antiguo
+// const sudokuBacktracking1 = (row, col, board, booleanBoard) => {
+//   for (let i = 1; i < 10; i += 1) {
+//     if (booleanBoard[row][col]) {
+//       const aux = board[row][col];
+//       board[row][col] = i;
+//       if (!isValidNumber(row, col, board)) {
+//         board[row][col] = aux;
+//       }
+//     }
+//     if (isValidSudoku(board)) {
+//       return board;
+//     }
+//     if (row < 8 && col === 8) {
+//       sudokuBacktracking(row + 1, 0, board, booleanBoard);
+//     }
+//     if (row <= 8 && col < 8) {
+//       sudokuBacktracking(row, col + 1, board, booleanBoard);
+//     }
+//   }
+// };
+// nuevo
+const sudokuBacktracking = (row, col, board, booleanBoard) => {
+  if (booleanBoard[col][row]) {
+    for (let i = 1; i < 10; i += 1) {
+      board[col][row] = i;
       if (isValidNumber(row, col, board)) {
-        board[row][col] = i;
+        console.log('row', row);
+        // console.log('col', col);
+        // console.log(board)
+        if (row === 8 && col === 8) return board;
+        if (row < 8 && col === 8) sudokuBacktracking(row + 1, 1, board, booleanBoard);
+        if (row <= 8 && col < 8) sudokuBacktracking(row, col + 1, board, booleanBoard);
       }
+      board[row][col] = 0;
     }
-    if (isValidSudoku(board)) {
-      solutions.push(board);
-    }
-    if (row === 8) {
-      sudokuBacktracking(0, col + 1, board, booleanBoard, solutions);
-    } else sudokuBacktracking(row + 1, col, board, booleanBoard, solutions);
+  } else {
+    if (row === 8 && col === 8) return board;
+    if (row < 8 && col === 8) sudokuBacktracking(row + 1, 1, board, booleanBoard);
+    if (row <= 8 && col < 8) sudokuBacktracking(row, col + 1, board, booleanBoard);
   }
 };
+
 
 const initializeSudokuSolutionFinder = (sudoku) => {
   let row = 0;
   let col = 0;
   const booleanBoard = getBooleanBoard(sudoku);
-  let solutions = [];
-  let allSolutions = sudokuBacktracking(row, col, sudoku, booleanBoard, solutions);
+  let allSolutions = sudokuBacktracking(row, col, sudoku, booleanBoard);
   return allSolutions;
 };
 
-// const x = initializeSudokuSolutionFinder(sudokuToResolve1);
+const x = initializeSudokuSolutionFinder(sudokuSolved1);
+console.log(x);
 module.exports = {
   getBooleanBoard,
   getPlainArray,
