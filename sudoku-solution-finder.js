@@ -21,18 +21,7 @@ let sudokuEmpty = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0],
-];
-const sudokuSolved1 = [
-  [6, 8, 1, 7, 5, 9, 2, 3, 4],
-  [7, 4, 3, 2, 1, 8, 6, 9, 5],
-  [5, 9, 2, 4, 6, 3, 7, 1, 8],
-  [2, 3, 4, 9, 7, 5, 8, 6, 1],
-  [1, 5, 7, 8, 2, 6, 3, 4, 9],
-  [9, 6, 8, 3, 4, 1, 5, 7, 2],
-  [3, 1, 6, 5, 9, 2, 4, 8, 7],
-  [4, 2, 9, 6, 8, 7, 1, 5, 3],
-  [8, 7, 5, 1, 3, 4, 9, 2, 0],
-];
+]
 
 function getQuadrantNumber(row, col) {
   if (row < 3 && col < 3) return 1;
@@ -139,21 +128,21 @@ const isValidNumber = (row, col, board) => {
 const sudokuBacktracking = (row, col, board, booleanBoard) => {
   if (booleanBoard[col][row]) {
     for (let i = 1; i < 10; i += 1) {
-      board[col][row] = i;
+      board[row][col] = i;
       if (isValidNumber(row, col, board)) {
-        console.log('row', row);
+        // console.log('row', row);
         // console.log('col', col);
         // console.log(board)
         if (row === 8 && col === 8) return board;
-        if (row < 8 && col === 8) sudokuBacktracking(row + 1, 1, board, booleanBoard);
-        if (row <= 8 && col < 8) sudokuBacktracking(row, col + 1, board, booleanBoard);
+        if (row < 8 && col === 8) return sudokuBacktracking(row + 1, 0, board, booleanBoard);
+        if (row <= 8 && col < 8) return sudokuBacktracking(row, col + 1, board, booleanBoard);
       }
       board[row][col] = 0;
     }
   } else {
     if (row === 8 && col === 8) return board;
-    if (row < 8 && col === 8) sudokuBacktracking(row + 1, 1, board, booleanBoard);
-    if (row <= 8 && col < 8) sudokuBacktracking(row, col + 1, board, booleanBoard);
+    if (row < 8 && col === 8) return sudokuBacktracking(row + 1, 0, board, booleanBoard);
+    if (row <= 8 && col < 8) return sudokuBacktracking(row, col + 1, board, booleanBoard);
   }
 };
 
@@ -166,7 +155,7 @@ const initializeSudokuSolutionFinder = (sudoku) => {
   return allSolutions;
 };
 
-const x = initializeSudokuSolutionFinder(sudokuSolved1);
+const x = initializeSudokuSolutionFinder(sudokuToResolve1);
 console.log(x);
 module.exports = {
   getBooleanBoard,
