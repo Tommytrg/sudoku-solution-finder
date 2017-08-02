@@ -10,7 +10,7 @@ const sudokuToResolve1 = [
   [3, 0, 0, 0, 9, 0, 0, 0, 0],
 ];
 
-const saveEmptyPositions = (board) => {
+const getEmptyPositions = (board) => {
   const emptyPositions = [];
   for (let i = 0; i < board.length; i += 1) {
     for (let j = 0; j < board[i].length; j += 1) {
@@ -22,7 +22,7 @@ const saveEmptyPositions = (board) => {
   return emptyPositions;
 };
 
-const checkRow = (board, row, value) => {
+const isValidRow = (board, row, value) => {
   for (let i = 0; i < board[row].length; i += 1) {
     if (board[row][i] === value) {
       return false;
@@ -31,7 +31,7 @@ const checkRow = (board, row, value) => {
   return true;
 };
 
-const checkColumn = (board, column, value) => {
+const isValidColm = (board, column, value) => {
   for (let i = 0; i < board.length; i += 1) {
     if (board[i][column] === value) {
       return false;
@@ -40,7 +40,7 @@ const checkColumn = (board, column, value) => {
   return true;
 };
 
-const check3x3Square = (board, column, row, value) => {
+const isValid3x3Square = (board, column, row, value) => {
   let columnCorner = 0;
   let rowCorner = 0;
   const squareSize = 3;
@@ -62,10 +62,10 @@ const check3x3Square = (board, column, row, value) => {
   return true;
 };
 
-const checkValue = (board, column, row, value) => {
-  if (checkRow(board, row, value) &&
-    checkColumn(board, column, value) &&
-    check3x3Square(board, column, row, value)) {
+const isValidValue = (board, column, row, value) => {
+  if (isValidRow(board, row, value) &&
+    isValidColm(board, column, value) &&
+    isValid3x3Square(board, column, row, value)) {
     return true;
   }
   return false;
@@ -84,7 +84,7 @@ const solvePuzzle = (board, emptyPositions) => {
     value = board[row][column] + 1;
     found = false;
     while (!found && value <= limit) {
-      if (checkValue(board, column, row, value)) {
+      if (isValidValue(board, column, row, value)) {
         found = true;
         board[row][column] = value;
         i += 1;
@@ -101,8 +101,7 @@ const solvePuzzle = (board, emptyPositions) => {
 };
 
 const solveSudoku = (board) => {
-  const emptyPositions = saveEmptyPositions(board);
-
+  const emptyPositions = getEmptyPositions(board);
   return solvePuzzle(board, emptyPositions);
 };
 
